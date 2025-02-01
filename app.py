@@ -71,7 +71,7 @@ uploaded_file = st.file_uploader(
 if uploaded_file is not None:
     # Open the image with PIL and display it
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(image, caption="Uploaded Image", use_container_width=True)
 
     # Let user select a sketch style
     sketch_style = st.selectbox("Select Sketch Style",
@@ -84,22 +84,22 @@ if uploaded_file is not None:
                                min_value=3, max_value=201, step=2, value=111)
         result = adjustable_sketch(image, blur_ksize=blur_ksize)
         st.image(result, caption="Pencil Sketch",
-                 use_column_width=True, clamp=True, channels="GRAY")
+                 use_container_width=True, clamp=True, channels="GRAY")
     elif sketch_style == "Colored Sketch":
         result = colored_sketch(image)
-        st.image(result, caption="Colored Sketch", use_column_width=True)
+        st.image(result, caption="Colored Sketch", use_container_width=True)
     elif sketch_style == "Edge-Detection Sketch":
         result = edge_sketch(image)
         st.image(result, caption="Edge-Detection Sketch",
-                 use_column_width=True, clamp=True, channels="GRAY")
+                 use_container_width=True, clamp=True, channels="GRAY")
     elif sketch_style == "Cartoon Effect":
         result = cartoonify(image)
-        st.image(result, caption="Cartoon Effect", use_column_width=True)
+        st.image(result, caption="Cartoon Effect", use_container_width=True)
     else:
         st.error("Invalid choice, defaulting to Pencil Sketch.")
         result = adjustable_sketch(image)
         st.image(result, caption="Pencil Sketch",
-                 use_column_width=True, clamp=True, channels="GRAY")
+                 use_container_width=True, clamp=True, channels="GRAY")
 
     # Provide a download button for the processed image
     st.markdown("---")
